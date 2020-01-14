@@ -1,0 +1,51 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{4726BEBF-0BAC-437F-A950-4135A2692FC6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\MS1\Project calculatrice.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Project1.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Project calculatrice.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Project calculatrice">
+        <MSBuild Projects="Project calculatrice.cbproj"/>
+    </Target>
+    <Target Name="Project calculatrice:Clean">
+        <MSBuild Projects="Project calculatrice.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project calculatrice:Make">
+        <MSBuild Projects="Project calculatrice.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1">
+        <MSBuild Projects="Project1.cbproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="Project1.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="Project1.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Project calculatrice;Project1;Project calculatrice"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Project calculatrice:Clean;Project1:Clean;Project calculatrice:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Project calculatrice:Make;Project1:Make;Project calculatrice:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
